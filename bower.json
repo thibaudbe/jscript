@@ -1,0 +1,32 @@
+{
+  "name": "jscript",
+  "version": "1.0.0",
+  "authors": [
+    "Thibaud B. <contact@thibaudb.com>"
+  ],
+  "description": "Not another JavaScript playground",
+  "main": "gulpfile.js",
+  "keywords": [
+    "javascript",
+    "css",
+    "table"
+  ],
+  "license": "MIT",
+  "homepage": "thibaudbe.github.io/jscript/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "animate-css": "~3.2.0",
+    "modernizr": "~2.8.3",
+    "bourbon": "~4.2.0",
+    "neat": "~1.7.1",
+    "bitters": "~1.0.0",
+    "sass.js": "~0.6.2"
+  }
+}

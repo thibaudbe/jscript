@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Thibaud B. -- Developper / Designer -- @thibaudbe
+
+# THANKS
+
+    Thibaud B.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Javascript, Modernizr

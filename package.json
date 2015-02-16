@@ -1,0 +1,46 @@
+{
+  "name": "jscript",
+  "version": "1.0.0",
+  "description": "Not another JavaScript playground",
+  "main": "gulpfile.js",
+  "keywords": [
+    "gulp",
+    "bower",
+    "javascript",
+    "sass",
+    "playground"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thibaudbe/jscript.git"
+  },
+  "author": "Thibaud B.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thibaudbe/jscript/issues"
+  },
+  "homepage": "https://github.com/thibaudbe/jscript",
+  "devDependencies": {
+    "browser-sync": "^2.0.1",
+    "del": "^1.1.1",
+    "event-stream": "^3.2.2",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-combine-media-queries": "^0.2.0",
+    "gulp-concat": "^2.4.3",
+    "gulp-cssmin": "^0.1.6",
+    "gulp-duration": "0.0.0",
+    "gulp-header": "^1.2.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-livereload": "^3.7.0",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-ruby-sass": "^1.0.0-alpha.3",
+    "gulp-size": "^1.2.0",
+    "gulp-uglifyjs": "^0.6.0",
+    "gulp-util": "^3.0.3",
+    "gulp-watch": "^4.1.1"
+  }
+}

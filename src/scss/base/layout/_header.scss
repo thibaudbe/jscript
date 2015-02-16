@@ -1,0 +1,64 @@
+
+.header {
+	height: 40px;
+	background: $header;
+  position: relative;
+  z-index: 20;
+  
+	.logo {
+	  display: inline-flex;
+	  margin-left: 1.8em;
+    margin-right: .8em;
+
+		h1 {
+			margin: 0;
+			color: $orange;
+		}
+		span { 
+			color: #fff;
+		}
+	}
+
+	li a {
+		color: $header-links;
+		padding: .8em 1em;
+
+		span {
+			font-size: .7em;
+		  text-transform: uppercase;
+		  position: relative;
+		  font-weight: bold;
+		  top: -2px;
+		  text-align: center;
+		  // display: none;
+		}
+
+		.fa {
+			margin-right: .5em;
+			font-size: 1.2em;
+			color: $header-links-icons
+		}
+
+		&:hover {
+			color: #fff;
+			background: $header-links-hover;
+		}
+
+	}
+
+	.actions {
+		a.active {
+			background: $header-links-hover;
+		}
+	}
+
+	.tabs {
+		position: absolute;
+		left: 50%;
+		margin-left: -108px;
+	}
+
+	.settings {
+		float: right;
+	}
+}
