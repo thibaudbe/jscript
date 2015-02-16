@@ -78,7 +78,8 @@ gulp.task('scripts', function() {
 		.pipe($.jshint());
 		
 	return es.concat(gulp.src([
-		// bower + 'console-polyfill/index.js',
+		bower + 'zepto/zepto.min.js',
+		bower + 'codemirror/lib/codemirror.js'
 	]), jsFiles)
 		.pipe($.concat('bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
@@ -116,7 +117,8 @@ gulp.task('styles', function() {
 
 	return es.concat(gulp.src([
 		bower + 'fontawesome/css/font-awesome.css',
-		bower + 'animate-css/animate.css'
+		bower + 'animate-css/animate.css',
+		bower + 'codemirror/lib/codemirror.css'
 	]), sassFiles)
 		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))

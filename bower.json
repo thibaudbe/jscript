@@ -27,6 +27,9 @@
     "bourbon": "~4.2.0",
     "neat": "~1.7.1",
     "bitters": "~1.0.0",
-    "sass.js": "~0.6.2"
+    "sass.js": "~0.6.2",
+    "codemirror": "~4.12.0",
+    "codemirror-emmet": "~1.1.0",
+    "zepto": "~1.1.6"
   }
 }
