@@ -1,12 +1,23 @@
 
-/* Hide Dropdowns by Default */
-ul ul {
-	display: none;
-	position: absolute; 
-	top: 58px;
-}
-	
-/* Display Dropdowns on Hover */
-ul li:hover > ul {
-	display: list-item;
+ul {
+	li.dropdown {
+		position: relative;
+
+		&:hover > ul {
+			display: list-item;
+		}		
+
+		ul {
+			display: none;
+			position: absolute; 
+			z-index: 100;
+			top: 40px;
+			right: 0;
+			background: $medium-blue;
+			width: 180px;
+			padding: 14px 10px;
+			color: $grey;
+		  font-size: .9em;
+		}
+	}
 }

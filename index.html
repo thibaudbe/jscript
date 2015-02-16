@@ -30,74 +30,96 @@
 </head>
 <body>
 
-<form>
+
 	<div class="header">
 		<a class="logo">
 			<!-- <img alt="JScript" src="" /> -->
 			<h1><span>JS</span>cript</h1>
 		</a>
+		
 		<ul class="inline actions">
 			<li><a href="#" id="btnRun"><i class="fa fa-play"></i><span>Run</span></a></li>
 			<li><a href="#" id="btnSave"><i class="fa fa-save"></i><span>Save</span></a></li>
 			<li><a href="#" id="btnShare"><i class="fa fa-share-alt"></i><span>Share</span></a></li>
 		</ul>
+
 		<ul class="inline settings">
-			<li><a href="#" class="dropdown"><i class="fa fa-cog"></i><span>Settings</span></a>
-				<div class="dropdown" style="display: none;">
-					<label for="library">
-		        Normalized CSS <input id="library" type="checkbox" />
-		    	</label>
-		    	<label for="library">
-		        Sass support <input id="sass" type="checkbox" checked="checked" />
-			    </label>
-				</div>
+			<li class="dropdown"><a href="#"><i class="fa fa-cog"></i><span>Settings</span></a>
+				<ul>
+					<li>
+						<label for="library">
+			        Normalized CSS <input id="library" type="checkbox" />
+			    	</label>
+					</li>
+		    	<li>
+  		    	<label for="sass">
+  		        Sass support <input id="sass" type="checkbox" checked="checked" />
+  			    </label>
+		    	</li>
+				</ul>
+			</li>
+
+			<li class="dropdown"><a href="#"><i class="fa fa-user"></i><span>Login</span></a>
+				<ul>
+					<form>
+						<li>
+							<input type="text" placeholder="Username" id="username" />
+						</li>
+			    	<li>
+							<input type="text" placeholder="Password" id="password" />
+						</li>
+						<li>
+							<input type="button" value="Login" id="login" />
+						</li>
+			    </form>
+				</ul>
 			</li>
 		</ul>
 	</div>
+
 	<div class="main">
-		<div class="col-left">
-			<ul class="tabs">
-				<li>
-					<input type="radio" name="tabs" id="tab1" checked />
-	        <label for="tab1">index.html</label>
-					<div id="tab-content1" class="tab-content">
-						<textarea name="html" id="htmlInput" cols="30" rows="10">
-						<h1>Lorem ipsum</h1>
-						<p>Sit dolor amet.</p>
-						</textarea>
-					</div>
-				</li>
-				<li>
-					<input type="radio" name="tabs" id="tab2" checked />
-	        <label for="tab2">main.scss</label>
-					<div id="tab-content2" class="tab-content">
-						<textarea name="script" id="scriptInput" cols="30" rows="10">
-						document.querySelector('h1').style.color = '#ddd';
-						</textarea>		
-					</div>
-				</li>
-				<li>
-					<input type="radio" name="tabs" id="tab3" checked />
-	        <label for="tab3">app.js</label>
-					<div id="tab-content3" class="tab-content">
-						<textarea name="style" id="styleInput" cols="30" rows="10">
-						$color: red;
-						body { background: $color; }
-						</textarea>
-					</div>
-				</li>
-			</ul>
+		<form id="form">
 
-		</div>
-		<div class="col-right">
-			<div id="result" class="result"></div>
-		</div>
+			<div class="col-left">
+				<ul class="tabs">
+					<li>
+						<input type="radio" name="tabs" id="tab1" checked />
+		        <label for="tab1">index.html</label>
+						<div id="tab-content1" class="tab-content">
+							<textarea name="html" id="htmlInput" cols="30" rows="10">
+							<h1>Lorem ipsum</h1>
+							<p>Sit dolor amet.</p>
+							</textarea>
+						</div>
+					</li>
+					<li>
+						<input type="radio" name="tabs" id="tab2" checked />
+		        <label for="tab2">main.scss</label>
+						<div id="tab-content2" class="tab-content">
+							<textarea name="script" id="scriptInput" cols="30" rows="10">
+							document.querySelector('h1').style.color = '#ddd';
+							</textarea>		
+						</div>
+					</li>
+					<li>
+						<input type="radio" name="tabs" id="tab3" checked />
+		        <label for="tab3">app.js</label>
+						<div id="tab-content3" class="tab-content">
+							<textarea name="style" id="styleInput" cols="30" rows="10">
+							$color: red;
+							body { background: $color; }
+							</textarea>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-right">
+				<div id="result" class="result"></div>
+			</div>
+
+		</form>
 	</div>
-</form>
-	
-	
-	
-
 	
 	<script type="text/javascript" src="dist/js/bundle.js?v=100"></script>
 

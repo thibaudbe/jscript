@@ -4,7 +4,7 @@
 	background: $header;
   position: relative;
   z-index: 20;
-  
+
 	.logo {
 	  display: inline-flex;
 	  margin-left: 1.8em;
@@ -60,5 +60,14 @@
 
 	.settings {
 		float: right;
+
+		label {
+			margin:0;
+			padding: .4em .4em;
+
+			input {
+				float: right;
+			}
+		}
 	}
 }

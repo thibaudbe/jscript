@@ -16,7 +16,7 @@ html, body {
 ul.inline {
 	display: inline-flex;
 
-	li {
+	& > li {
 	  display: inline-flex;
 
 		a {}
