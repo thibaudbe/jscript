@@ -66,7 +66,7 @@ gulp.task('icons', function() {
 
 // Copy html from src to dist + minify
 gulp.task('html', function() {
-	return gulp.src(base + 'index.html')
+	return gulp.src('./index.html')
 		.pipe($.size({ title : 'html' }))
 		.pipe(isProduction ? gutil.noop() : $.duration('html'))
 		.pipe(reload({stream:true}))
@@ -148,7 +148,7 @@ gulp.task('browser-sync', function() {
 
 // Watch sass, html and js file changes
 gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch(base + 'index.html', ['html']);
+	gulp.watch('./index.html', ['html']);
 	gulp.watch(src + 'scss/**/**/*.scss', ['styles']);
 	gulp.watch(src + 'js/**/*.js', ['scripts']);
 });
