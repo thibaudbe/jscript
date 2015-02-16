@@ -40,7 +40,9 @@
 		<ul class="inline actions">
 			<li><a href="#" id="btnRun"><i class="fa fa-play"></i><span>Run</span></a></li>
 			<li><a href="#" id="btnSave"><i class="fa fa-save"></i><span>Save</span></a></li>
+			<!-- 
 			<li><a href="#" id="btnShare"><i class="fa fa-share-alt"></i><span>Share</span></a></li>
+			 -->
 		</ul>
 
 		<ul class="inline settings">
@@ -84,32 +86,34 @@
 			<div class="col-left">
 				<ul class="tabs">
 					<li>
-						<input type="radio" name="tabs" id="tab1" checked />
+						<input type="radio" name="tabs" id="tab1" />
 						<label for="tab1">index.html</label>
 						<div id="tab-content1" class="tab-content">
 							<textarea name="html" id="htmlInput" cols="30" rows="10">
 							<h1>Lorem ipsum</h1>
-							<p>Sit dolor amet.</p>
+							<p>Mauris pellentesque nibh fo shizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Mofo in tortor. Pellentesque shiz nisi. Brizzle fo shizzle doggy platea dictumst. I saw beyonces tizzles and my pizzle went crizzle dapibizzle. Yo mamma pizzle urna, pretizzle shiz, mattizzle things, eleifend vitae, nunc. Shiznit suscipizzle. Integizzle sempizzle velit sed purizzle.</p>
+							<p>Lorizzle fo shizzle my nizzle i'm in the shizzle boofron amizzle, boom shackalack fo shizzle elit. Nullizzle fo shizzle velizzle, aliquet volutpizzle, my shizz break yo neck, yall, gangsta vizzle, arcu. Boom shackalack fo tortor. Sizzle erizzle. You son of a bizzle at dolor dapibus turpis tempizzle shizzle my nizzle crocodizzle.</p>
+							<p>Mauris pellentesque nibh fo shizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle. Mofo in tortor. Pellentesque shiz nisi. Brizzle fo shizzle doggy platea dictumst. I saw beyonces tizzles and my pizzle went crizzle dapibizzle. Yo mamma pizzle urna, pretizzle shiz, mattizzle things, eleifend vitae, nunc. Shiznit suscipizzle. Integizzle sempizzle velit sed purizzle.</p>
 							</textarea>
 						</div>
 					</li>
 					<li>
-						<input type="radio" name="tabs" id="tab2" checked />
+						<input type="radio" name="tabs" id="tab2" />
 						<label for="tab2">main.scss</label>
 						<div id="tab-content2" class="tab-content">
-							<textarea name="script" id="scriptInput" cols="30" rows="10">
-							document.querySelector('h1').style.color = '#ddd';
-							</textarea>		
+							<textarea name="style" id="styleInput" cols="30" rows="10">
+							$color: #333;
+							body { color: $color; }
+							</textarea>
 						</div>
 					</li>
 					<li>
-						<input type="radio" name="tabs" id="tab3" checked />
+						<input type="radio" name="tabs" id="tab3" />
 						<label for="tab3">app.js</label>
 						<div id="tab-content3" class="tab-content">
-							<textarea name="style" id="styleInput" cols="30" rows="10">
-							$color: red;
-							body { background: $color; }
-							</textarea>
+							<textarea name="script" id="scriptInput" cols="30" rows="10">
+							document.querySelector('h1').style.color = '#999';
+							</textarea>		
 						</div>
 					</li>
 				</ul>
