@@ -24,10 +24,11 @@
 }
 
 .result {
+	background: #fff;
 	height: 100%;
   position: relative;
   z-index: 10;
-  box-shadow: -5px 0 2px -1px rgba(28, 31, 38, 0.35);
+  box-shadow: -5px 0 2px -1px rgba(28, 31, 38, .1);
 
 	iframe {
 		border: none;

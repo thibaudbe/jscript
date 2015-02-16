@@ -42,7 +42,7 @@
 	var run = function() {
 		var data = settings();
 
-		// Rmove iframe if already exists
+		// Remove iframe if already exists
 		var resultFrame = document.querySelector('#resultFrame');
 		if (resultFrame) { resultFrame.remove() }
 
