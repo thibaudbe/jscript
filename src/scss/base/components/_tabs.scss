@@ -21,6 +21,10 @@
     color: $grey;
     cursor: pointer;
     font-size: .9em;
+
+    &:hover {
+      color: #fff;
+    }
   }
   
   .tab-content {
