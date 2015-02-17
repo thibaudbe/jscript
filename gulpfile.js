@@ -78,8 +78,7 @@ gulp.task('scripts', function() {
 		.pipe($.jshint());
 		
 	return es.concat(gulp.src([
-		bower + 'zepto/zepto.min.js',
-		bower + 'codemirror/lib/codemirror.js'
+		// bower + 'zepto/zepto.min.js',
 	]), jsFiles)
 		.pipe($.concat('bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
@@ -94,7 +93,13 @@ gulp.task('headScripts', function() {
 	return es.concat(gulp.src([
 		bower + 'modernizr/modernizr.js',
 		bower + 'sass.js/dist/sass.worker.js',
-		bower + 'sass.js/dist/worker.min.js'
+		bower + 'sass.js/dist/worker.min.js',
+		// bower + 'ace-builds/src/ace.js',
+		// bower + 'ace-builds/src/emmet.js',
+		// bower + 'emmet/index.js',
+		// 'http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js',
+		// 'https://nightwing.github.io/emmet-core/emmet.js',
+		// 'http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ext-emmet.js'
 	]))
 		.pipe($.concat('head-bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
@@ -118,7 +123,6 @@ gulp.task('styles', function() {
 	return es.concat(gulp.src([
 		bower + 'fontawesome/css/font-awesome.css',
 		bower + 'animate-css/animate.css',
-		bower + 'codemirror/lib/codemirror.css'
 	]), sassFiles)
 		.pipe($.concat('main.min.css'))
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
