@@ -1,6 +1,7 @@
 
 .main {
 	height: 100vh;
+	height: calc(100vh - 40px);
 	width: 100vw;
 	position: relative;
 	background: $background;
@@ -9,6 +10,7 @@
 .col-left, 
 .col-right {
 	height: 100vh;
+	height: calc(100vh - 40px);
 	position: absolute;
 	position: relative;
 }
