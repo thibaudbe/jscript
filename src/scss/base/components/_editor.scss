@@ -41,6 +41,10 @@ $ace-gutter:    $ace-grey-gutter;
 	  	display: none !important;
 	  }
 
+	  .ace_indent-guide {
+	  	background: none !important;
+	  }
+
 	  .ace_print-margin {
 	  	background: #303943;
 	  }
