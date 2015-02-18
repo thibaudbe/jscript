@@ -50,6 +50,10 @@ textarea {
 	  	display: none !important;
 	  }
 
+	  .ace_print-margin {
+	  	background: #303943;
+	  }
+
 	  .ace_gutter {
 	    background: $ace-bg;
 	    color: $ace-gutter;
@@ -66,6 +70,10 @@ textarea {
 
 	  .ace_identifier {
 	    color: $ace-ident;
+	  }
+
+	  .ace_punctuation {
+	  	color: $ace-color !important;
 	  }
 
 	  .ace_marker-layer .ace_selection {
@@ -121,6 +129,10 @@ textarea {
 	  .ace_support.ace_constant,
 	  .ace_variable.ace_parameter {
 	    color: $ace-charact;
+	  }
+
+	  .ace_attribute-name {
+	    color: $ace-charact !important;
 	  }
 
 	  .ace_constant.ace_other {
