@@ -1,26 +1,44 @@
 'use strict';
 
-var app = function(){
+
+/**
+ * Data's API
+ */
+var data = {
+	title: null,
+	description: null,
+	library: false,
+	sass: true,
+	ressources: [],
+	view: {
+		tab1: true,
+		tab2: false,
+		tab3: false
+	},
+	html: '<div class="foo">\n\tHello <b>World</b> !\n</div>',
+	script: 'function myScript() {\n\tvar x = \'kikou\';\n\treturn x;\n}',
+	style: '$color: #ff6C00;\n\nbody {\n\tcolor: $color;\n}'
+};
+
+
+var app = function() {
+
+	var init = function() {
+		getData(data);
+		initTabs();
+		events();
+	};
 
 	/**
-	 * Data's API
+	 * Selectors
 	 */
-	var data = {
-		html: '<div class="foo">\n\tHello <b>World</b> !\n</div>',
-		script: 'function myScript() {\n\tvar x = \'kikou\';\n\treturn x;\n}',
-		style: '$color: #333;\n\nbody {\n\tcolor: $color;\n}'
-	};
-
-	var init = function(){
-		getDataFromServer();
-		// run();
-		// events();
-	};
-
 	var result = document.querySelector('#result');
 	var inputStyle = document.querySelector('#inputStyle');
 	var inputScript = document.querySelector('#inputScript');
 	var inputHtml = document.querySelector('#inputHtml');
+
+	var inputLibrary = document.querySelector('#library');
+	var inputSass = document.querySelector('#sass');
 
 	var tab1 = document.querySelector('#tab1');
 	var tab2 = document.querySelector('#tab2');
@@ -30,118 +48,121 @@ var app = function(){
 	var tabContent2 = document.querySelector('#tab-content2');
 	var tabContent3 = document.querySelector('#tab-content3');
 
-	var library = document.querySelector('#library');
-	var sass = document.querySelector('#sass');
-
 	var btnRun = document.querySelector('#btnRun');
 	var btnSave = document.querySelector('#btnSave');
 
-	/**
-	 * Get Data from server
-	 * @ {object}
-	 */
-	var getDataFromServer = function() {
-    inputHtml.value = data.html;
-    inputScript.value = data.script;
-    inputStyle.value = data.style;
-    
-    var input_data = {
-      html: inputHtml.value,
-      script: inputScript.value,
-      style: inputStyle.value
-    }
-    return setDataFromInput(input_data);
-	};
 
-	var setDataFromInput = function(data) {
+	/**
+	 * Get Data from API
+	 * @return {object}
+	 */
+	var getData = function(data) {
+		inputHtml.value = data.html;
+		inputScript.value = data.script;
+		inputStyle.value = data.style;
+
 		initEditor(data.html, editorHtml, 'html');
 		initEditor(data.script, editorScript, 'javascript');
 		initEditor(data.style, editorStyle, 'scss');
+		buildFrame(data);
 	};
 
-
 	var initEditor = function(data, target, mode) {
-    var editor = ace.edit(target);
-    if (mode == 'html') {
+		var editor = ace.edit(target);
+		if (mode == 'html') {
     	ace.require('ace/ext/emmet');
     	editor.setOption('enableEmmet', true);
     }
-    editor.getSession().setUseWorker(false);
-    editor.getSession().setMode('ace/mode/'+ mode);
-    editor.setValue(data);
-    editor.commands.addCommand({
-      name: 'Save',
-      bindKey: { 
-        win: 'Ctrl-Enter',
-        mac: 'Command-Enter'
-      },
-      exec: function(editor) {
-        console.log('Save', editor.getValue());
-        // saveDataToInput(cm.getValue());
-      }
-    });
+		editor.getSession().setUseWorker(false);
+		editor.getSession().setMode('ace/mode/'+ mode);
+		editor.setValue(data);
+
+		editor.on('change', function() {
+			refreshInput(mode, editor.getValue());
+		});
 	};
 
-	var saveDataToInput = function(new_data) {
-    inputScript.value = new_data;
-    return saveDataToServer(new_data);
+	var refreshInput = function(mode, scope_data) {
+		switch(mode) {
+			case 'html':
+				inputHtml.value = scope_data;
+				break;
+			case 'javascript':
+				inputScript.value = scope_data;
+				break;
+			case 'scss':
+				inputStyle.value = scope_data;
+				break;
+			default:
+				return;
+		}
 	};
 
-	var saveDataToServer = function(new_data) {
-		console.log('new_data', new_data);
+	var actionDispatcher = function(type, data) {
+		data.library = inputLibrary.checked ? true : false;
+		data.sass = inputSass.checked ? true : false;
+		data.html = inputHtml.value;
+		data.script = inputScript.value;
+		data.style = inputStyle.value;
+
+		console.log('data', data);
+
+		switch(type) {
+			case 'save':
+				saveDataToServer(data);
+				break;
+			case 'refresh':
+				buildFrame(data);
+				break;
+			default:
+				return;
+		}
+	}
+
+	var saveDataToServer = function(data) {
+		console.log('Data post to server', data);
 	};
 
 
 	/**
-	 * Values
+	 * Init tabs
 	 */
-	var settings = function() {
-		return {
-			title: null,
-			description: null,
-			library: library.checked ? true : false,
-			sass: sass.checked ? true : false,
-			ressources: [],
-			view: {
-				tab1: tab1.checked ? true: false,
-				tab2: tab2.checked ? true: false,
-				tab3: tab3.checked ? true: false
-			},
-			style: styleInput.value,
-			script: scriptInput.value,
-			html: htmlInput.value
-		};
+	var initTabs = function() {
+		if (data.view.tab2 === true) { 
+			tab2.checked = true 
+		} else if (data.view.tab3 === true) { 
+			tab3.checked = true 
+		} else { 
+			tab1.checked = true 
+		} 
 	};
+
 
 	/**
 	 * Events
 	 */
 	var events = function() {
+
 		btnRun.addEventListener('click', function() {
-			run();
+			actionDispatcher('refresh', data);
 			return false;
 		});
+		
 		btnSave.addEventListener('click', function() {
-			console.log('Save', settings());
+			actionDispatcher('save', data);
 			return false;
 		});
 	};
 
 	
 	/**
-	 * Run code
+	 * Build an iframe with editor values
 	 */
-	var run = function() {
-		var data = settings();
+	var buildFrame = function(data) {
 
 		// Remove iframe if already exists
 		var resultFrame = document.querySelector('#resultFrame');
 		if (resultFrame) { resultFrame.remove() }
-
-		// // Set default tab visible if true
-		// if (data.view.tab2 === true) { tab2.checked = true }
-		// else if (data.view.tab3 === true) { tab3.checked = true }
-		// else { tab1.checked = true } 
 
 		// Create new iframe
 		var newFrame = document.createElement('iframe');
@@ -166,30 +187,26 @@ var app = function(){
 		}
 		
 		// Compile to SASS or simply load CSS. default is true
+		var style = newFrame.contentWindow.document.createElement('style');
+		style.setAttribute('type', 'text/css');
+
 		if (data.sass === true) {
 			var scss = data.style;
 			var css = Sass.compile(scss);
-			
-			var style = newFrame.contentWindow.document.createElement('style');
-			style.setAttribute('type', 'text/css');
 			style.innerHTML = css;
 		} else {
-			var style = newFrame.contentWindow.document.createElement('style');
-			style.setAttribute('type', 'text/css');
 			style.innerHTML = data.style;
 		}
 		
-		// Append HTML, CSS and Script
+		// Append HTML, style and script
 		newFrame.contentWindow.document.body.insertAdjacentHTML('beforeend', html);
 		newFrame.contentWindow.document.head.appendChild(style);
 		newFrame.contentWindow.document.body.appendChild(script);
-
-		// initCodeMirror(data);
-	}
+	};
 
 	return {
 		init: init
-	}
+	};
 
 }();
 
