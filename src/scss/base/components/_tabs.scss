@@ -16,7 +16,7 @@
   }
   label {
     display: block;
-    padding: .8em;
+    padding: .8em 1.8em;
     margin-bottom: 0;
     color: $grey;
     cursor: pointer;
@@ -36,6 +36,20 @@
     left: 0;
     top: 37px;
     bottom: 0;
+
+    // textarea
+    #inputHtml,
+    #inputScript,
+    #inputStyle {
+      display: none !important;
+      visibility: hidden !important;
+      // position: absolute;
+      // bottom: 0;
+      // right: 0;
+      // margin: 10px 15px;
+      // z-index: 100;
+      // width: 300px
+    }
   }
 
   [id^="tab"]:checked + label {

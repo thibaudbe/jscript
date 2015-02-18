@@ -24,15 +24,6 @@ $ace-charact:   $ace-orange;
 $ace-gutter:    $ace-grey-gutter;
 
 
-textarea {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px 15px;
-  z-index: 100;
-  width: 300px
-}
-
 
 .ace_editor {
 	position: absolute !important;
