@@ -34,97 +34,92 @@
 </head>
 <body>
 
+<form id="form">
+		<div class="header">
+			<a class="logo" href="/">
+				<!-- <img alt="JScript" src="" /> -->
+				<h1><span>JS</span>cript</h1>
+			</a>
+			
+			<ul class="inline actions">
+				<li><a href="#" id="btnRun"><i class="fa fa-play"></i><span>Run</span></a></li>
+				<li><a href="#" id="btnSave"><i class="fa fa-save"></i><span>Save</span></a></li>
+				<!-- 
+				<li><a href="#" id="btnShare"><i class="fa fa-share-alt"></i><span>Share</span></a></li>
+				 -->
+			</ul>
 
-	<div class="header">
-		<a class="logo" href="/">
-			<!-- <img alt="JScript" src="" /> -->
-			<h1><span>JS</span>cript</h1>
-		</a>
-		
-		<ul class="inline actions">
-			<li><a href="#" id="btnRun"><i class="fa fa-play"></i><span>Run</span></a></li>
-			<li><a href="#" id="btnSave"><i class="fa fa-save"></i><span>Save</span></a></li>
-			<!-- 
-			<li><a href="#" id="btnShare"><i class="fa fa-share-alt"></i><span>Share</span></a></li>
-			 -->
-		</ul>
-
-		<ul class="inline settings">
-			<li class="dropdown"><a href="#"><i class="fa fa-cog"></i><span>Settings</span></a>
-				<ul>
-					<li>
-						<label for="library">
-							Normalized CSS <input name="library" id="library" type="checkbox" />
-						</label>
-					</li>
-					<li>
-						<label for="sass">
-							Sass support <input name="sass" id="sass" type="checkbox" checked="checked" />
-						</label>
-					</li>
-				</ul>
-			</li>
-			<!--
-			<li class="dropdown"><a href="#"><i class="fa fa-user"></i><span>Login</span></a>
-				<ul>
-					<form>
+			<ul class="inline settings">
+				<li class="dropdown"><a href="#"><i class="fa fa-cog"></i><span>Settings</span></a>
+					<ul>
 						<li>
-							<input type="text" placeholder="Username" id="username" />
+							<label for="library">Normalized CSS <input name="library" id="inputLibrary" type="checkbox" /></label>
 						</li>
 						<li>
-							<input type="text" placeholder="Password" id="password" />
+							<label for="sass">Sass support <input name="sass" id="inputSass" type="checkbox" /></label>
 						</li>
 						<li>
-							<input type="button" value="Login" id="login" />
+							<label for="preview">Live preview <input name="preview" id="inputPreview" type="checkbox" /></label>
 						</li>
-					</form>
-				</ul>
-			</li>
-			-->
-		</ul>
-	</div>
+					</ul>
+				</li>
+				<!--
+				<li class="dropdown"><a href="#"><i class="fa fa-user"></i><span>Login</span></a>
+					<ul>
+						<form>
+							<li>
+								<input type="text" placeholder="Username" id="username" />
+							</li>
+							<li>
+								<input type="text" placeholder="Password" id="password" />
+							</li>
+							<li>
+								<input type="button" value="Login" id="login" />
+							</li>
+						</form>
+					</ul>
+				</li>
+				-->
+			</ul>
+		</div>
 
-	<div class="main">
-		<form id="form">
+		<div class="main">
+			<ul class="tabs">
+				<li>
+					<input type="radio" name="tabs" id="tab1" />
+					<label for="tab1">HTML</label>
+					<div id="tab-content1" class="tab-content tab-editor">
+						<textarea name="html" id="inputHtml" cols="30" rows="10"></textarea>
+						<div id="editorHtml" class="ace-spacegray"></div>
+					</div>
+				</li>
+				<li>
+					<input type="radio" name="tabs" id="tab2" />
+					<label for="tab2">Style</label>
+					<div id="tab-content2" class="tab-content tab-editor">
+						<textarea name="style" id="inputStyle" cols="30" rows="10"></textarea>
+						<div id="editorStyle" class="ace-spacegray"></div>
+					</div>
+				</li>
+				<li>
+					<input type="radio" name="tabs" id="tab3" />
+					<label for="tab3">Script</label>
+					<div id="tab-content3" class="tab-content tab-editor">
+						<textarea name="script" id="inputScript" cols="30" rows="10"></textarea>
+						<div id="editorScript" class="ace-spacegray"></div>		
+					</div>
+				</li>
+				<li>
+					<input type="radio" name="tabs" id="tab4" />
+					<label for="tab4" id="btnResult" class="result-label" style="display: none;">Result</label>
+					<div id="tab-content4" class="tab-content tab-result">
+						<div id="result" class="result"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
 
-			<div class="col-left">
-				<ul class="tabs">
-					<li>
-						<input type="radio" name="tabs" id="tab1" />
-						<label for="tab1">HTML</label>
-						<div id="tab-content1" class="tab-content tab-editor">
-							<textarea name="html" id="inputHtml" cols="30" rows="10"></textarea>
-							<div id="editorHtml" class="ace-spacegray"></div>
-						</div>
-					</li>
-					<li>
-						<input type="radio" name="tabs" id="tab2" />
-						<label for="tab2">Style</label>
-						<div id="tab-content2" class="tab-content tab-editor">
-							<textarea name="style" id="inputStyle" cols="30" rows="10"></textarea>
-							<div id="editorStyle" class="ace-spacegray"></div>
-						</div>
-					</li>
-					<li>
-						<input type="radio" name="tabs" id="tab3" />
-						<label for="tab3">Script</label>
-						<div id="tab-content3" class="tab-content tab-editor">
-							<textarea name="script" id="inputScript" cols="30" rows="10"></textarea>
-							<div id="editorScript" class="ace-spacegray"></div>		
-						</div>
-					</li>
-					<li>
-						<input type="radio" name="tabs" id="tab4" />
-						<label for="tab4" id="btnResult" class="result-label" style="display: none;">Result</label>
-						<div id="tab-content4" class="tab-content tab-result">
-							<div id="result" class="result"></div>
-						</div>
-					</li>
-				</ul>
-			</div>
-
-		</form>
-	</div>
+	</form>
 	
 	<script type="text/javascript" src="dist/js/bundle.js?v=100"></script>
 

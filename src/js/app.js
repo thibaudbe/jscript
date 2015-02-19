@@ -9,6 +9,7 @@ var data = {
 	description: null,
 	library: false,
 	sass: true,
+	preview: true,
 	ressources: [],
 	view: {
 		tab1: true,
@@ -33,12 +34,14 @@ var app = function() {
 	 * Selectors
 	 */
 	var result = document.querySelector('#result');
+
 	var inputStyle = document.querySelector('#inputStyle');
 	var inputScript = document.querySelector('#inputScript');
 	var inputHtml = document.querySelector('#inputHtml');
 
-	var inputLibrary = document.querySelector('#library');
-	var inputSass = document.querySelector('#sass');
+	var inputLibrary = document.querySelector('#inputLibrary');
+	var inputSass = document.querySelector('#inputSass');
+	var inputPreview = document.querySelector('#inputPreview');
 
 	var tab1 = document.querySelector('#tab1');
 	var tab2 = document.querySelector('#tab2');
@@ -58,13 +61,21 @@ var app = function() {
 	 * @return {object}
 	 */
 	var getData = function(data) {
+
+		// init form's inputs
 		inputHtml.value = data.html;
 		inputScript.value = data.script;
 		inputStyle.value = data.style;
+		inputLibrary.checked = data.library ? true : false;
+		inputSass.checked = data.sass ? true : false;
+		inputPreview.checked = data.preview ? true : false;
 
+		// init editors
 		initEditor(data.html, editorHtml, 'html');
 		initEditor(data.script, editorScript, 'javascript');
 		initEditor(data.style, editorStyle, 'scss');
+
+		// init iframe
 		buildFrame(data);
 	};
 
@@ -76,7 +87,7 @@ var app = function() {
     }
 		editor.getSession().setUseWorker(false);
 		editor.getSession().setMode('ace/mode/'+ mode);
-		editor.setValue(data);
+		editor.setValue(data, -1);
 
 		editor.on('change', function() {
 			refreshInput(mode, editor.getValue());
@@ -96,27 +107,37 @@ var app = function() {
 				break;
 			default:
 				return;
+		};
+
+		// Enable HTML & style live preview
+		if (inputPreview.checked) {
+			refreshData(data);
 		}
 	};
 
 	var actionDispatcher = function(type, data) {
-		data.library = inputLibrary.checked ? true : false;
-		data.sass = inputSass.checked ? true : false;
-		data.html = inputHtml.value;
-		data.script = inputScript.value;
-		data.style = inputStyle.value;
-
 		switch(type) {
 			case 'save':
 				saveDataToServer(data);
 				break;
 			case 'refresh':
-				buildFrame(data);
+				refreshData(data);
 				break;
 			default:
 				return;
 		}
 	}
+
+	var refreshData = function(data) {
+		data.library = inputLibrary.checked ? true : false;
+		data.sass = inputSass.checked ? true : false;
+		data.preview = inputPreview.checked ? true : false;
+		data.html = inputHtml.value;
+		data.script = inputScript.value;
+		data.style = inputStyle.value;
+
+		buildFrame(data);
+	};
 
 	var saveDataToServer = function(data) {
 		console.log('Data post to server', data);
@@ -152,11 +173,6 @@ var app = function() {
 			return false;
 		});
 
-		// btnResult.addEventListener('click', function() {
-		// 	btnResult.addClassname = 'active';
-		// 	result.style.display = 'block';
-		// 	return false;
-		// });
 	};
 
 	
