@@ -7,32 +7,17 @@
 	background: $background;
 }
 
-.col-left, 
-.col-right {
-	height: 100vh;
-	height: calc(100vh - 40px);
-	position: absolute;
-	position: relative;
-}
-
-.col-left {	
-	float: left;
-	width: 66.66%;
-}
-
-.col-right {	
-	float: right;
-	width: 33.33%;
-}
-
 .result {
 	background: #fff;
 	height: 100%;
   position: relative;
   z-index: 10;
-  border-left: 10px solid #232830;
   // box-shadow: -5px 0 2px -1px rgba(28, 31, 38, .1);
 
+  @media screen and (min-width: $tablet) {
+  	border-left: 10px solid #232830;
+  }
+  
 	iframe {
 		border: none;
 		width: 100%;

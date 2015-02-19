@@ -7,6 +7,19 @@
   li {
     float: left;
     display: block;
+
+    @media screen and (max-width: $tablet) {
+      width: 25%;
+
+      label {
+        text-align: center;
+      }
+
+      .result-label {
+        display: block !important;
+      }
+    }
+
   }
   
   input[type="radio"] {
@@ -36,6 +49,27 @@
     left: 0;
     top: 37px;
     bottom: 0;
+
+    &.tab-editor {
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+      }
+      @media screen and (min-width: $tablet) {
+        width: 66.66% !important;
+      }
+    }
+
+    &.tab-result {
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+      }
+      @media screen and (min-width: $tablet) {
+        display: block !important;
+        width: 33.33% !important;
+        right: 0;
+        left: initial;
+      }
+    }
 
     // textarea
     #inputHtml,

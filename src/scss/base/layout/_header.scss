@@ -7,8 +7,15 @@
 
 	.logo {
 	  display: inline-flex;
-	  margin-left: 1.8em;
-    margin-right: 1.8em;
+	 
+    @media screen and (max-width: $tablet) {
+		  margin-left: .8em;
+	    margin-right: .8em;
+    }
+    @media screen and (min-width: $tablet) {
+		  margin-left: 1.8em;
+	    margin-right: 1.8em;
+    }
 
 		h1 {
 			margin: 0;

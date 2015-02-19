@@ -92,7 +92,7 @@
 					<li>
 						<input type="radio" name="tabs" id="tab1" />
 						<label for="tab1">HTML</label>
-						<div id="tab-content1" class="tab-content">
+						<div id="tab-content1" class="tab-content tab-editor">
 							<textarea name="html" id="inputHtml" cols="30" rows="10"></textarea>
 							<div id="editorHtml" class="ace-spacegray"></div>
 						</div>
@@ -100,7 +100,7 @@
 					<li>
 						<input type="radio" name="tabs" id="tab2" />
 						<label for="tab2">Style</label>
-						<div id="tab-content2" class="tab-content">
+						<div id="tab-content2" class="tab-content tab-editor">
 							<textarea name="style" id="inputStyle" cols="30" rows="10"></textarea>
 							<div id="editorStyle" class="ace-spacegray"></div>
 						</div>
@@ -108,16 +108,19 @@
 					<li>
 						<input type="radio" name="tabs" id="tab3" />
 						<label for="tab3">Script</label>
-						<div id="tab-content3" class="tab-content">
+						<div id="tab-content3" class="tab-content tab-editor">
 							<textarea name="script" id="inputScript" cols="30" rows="10"></textarea>
 							<div id="editorScript" class="ace-spacegray"></div>		
 						</div>
 					</li>
+					<li>
+						<input type="radio" name="tabs" id="tab4" />
+						<label for="tab4" id="btnResult" class="result-label" style="display: none;">Result</label>
+						<div id="tab-content4" class="tab-content tab-result">
+							<div id="result" class="result"></div>
+						</div>
+					</li>
 				</ul>
-			</div>
-
-			<div class="col-right">
-				<div id="result" class="result"></div>
 			</div>
 
 		</form>

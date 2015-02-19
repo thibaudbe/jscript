@@ -50,6 +50,7 @@ var app = function() {
 
 	var btnRun = document.querySelector('#btnRun');
 	var btnSave = document.querySelector('#btnSave');
+	var btnResult = document.querySelector('#btnResult');
 
 
 	/**
@@ -150,6 +151,12 @@ var app = function() {
 			actionDispatcher('save', data);
 			return false;
 		});
+
+		// btnResult.addEventListener('click', function() {
+		// 	btnResult.addClassname = 'active';
+		// 	result.style.display = 'block';
+		// 	return false;
+		// });
 	};
 
 	
