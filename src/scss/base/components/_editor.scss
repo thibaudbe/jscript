@@ -98,7 +98,8 @@ $ace-gutter:    $ace-grey-gutter;
 	  }
 
 	  .ace_marker-layer .ace_selected-word {
-	    border: 1px solid $ace-select;
+	    border: 1px solid $ace-active;
+	    background: none;
 	  }
 
 	  .ace_invisible {
