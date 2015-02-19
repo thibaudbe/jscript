@@ -79,15 +79,26 @@ var app = function() {
 		buildFrame(data);
 	};
 
-	var initEditor = function(data, target, mode) {
+	var initEditor = function(scope_data, target, mode) {
 		var editor = ace.edit(target);
 		if (mode == 'html') {
-    	ace.require('ace/ext/emmet');
-    	editor.setOption('enableEmmet', true);
-    }
+			ace.require('ace/ext/emmet');
+			editor.setOption('enableEmmet', true);
+		}
 		editor.getSession().setUseWorker(false);
 		editor.getSession().setMode('ace/mode/'+ mode);
-		editor.setValue(data, -1);
+		editor.setValue(scope_data, -1);
+
+		editor.commands.addCommand({
+      name: 'Refresh',
+      bindKey: { 
+        win: 'Ctrl-Enter',
+        mac: 'Command-Enter'
+      },
+      exec: function(editor) {
+        actionDispatcher('refresh', data);
+      }
+    });
 
 		editor.on('change', function() {
 			refreshInput(mode, editor.getValue());

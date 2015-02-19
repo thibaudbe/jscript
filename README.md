@@ -11,6 +11,11 @@ You can test your CSS, HTML and JavaScript code in the result window.
 - SASS support
 - Ace UI editor
 - Emmet.io support (oh yeah!)
+- Responsive
+- Shortcuts
+	- ```ctrl + enter``` to run on window
+	- ```cmd + enter``` to run on osx
+
 
 
 ## Next features
