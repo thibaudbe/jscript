@@ -9,7 +9,7 @@ var data = {
 	description: null,
 	library: false,
 	sass: true,
-	preview: true,
+	preview: false,
 	ressources: [],
 	view: {
 		tab1: true,
@@ -34,6 +34,7 @@ var app = function() {
 	 * Selectors
 	 */
 	var result = document.querySelector('#result');
+	var alertBox = document.querySelector('#alertBox');
 
 	var inputStyle = document.querySelector('#inputStyle');
 	var inputScript = document.querySelector('#inputScript');
