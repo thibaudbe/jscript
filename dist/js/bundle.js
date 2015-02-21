@@ -9,7 +9,7 @@ var data = {
 	description: null,
 	library: false,
 	sass: true,
-	preview: true,
+	preview: false,
 	ressources: [],
 	view: {
 		tab1: true,
@@ -34,6 +34,7 @@ var app = function() {
 	 * Selectors
 	 */
 	var result = document.querySelector('#result');
+	var alertBox = document.querySelector('#alertBox');
 
 	var inputStyle = document.querySelector('#inputStyle');
 	var inputScript = document.querySelector('#inputScript');
@@ -181,10 +182,26 @@ var app = function() {
 		
 		btnSave.addEventListener('click', function() {
 			actionDispatcher('save', data);
+			alertPopup('warning', 'database connexion incoming.');
 			return false;
 		});
 
 	};
+
+	var alertPopup = function(type, message) {
+		var alert = document.createElement('div');
+		alert.setAttribute('class', 'alert alert-'+ type);
+		alert.innerHTML = message;
+		var button = document.createElement('button');
+		button.setAttribute('class', 'alert__close');
+		alert.appendChild(button);
+		alertBox.appendChild(alert);
+
+		button.addEventListener('click', function() {
+			alert.remove();
+			return false;
+		});
+	}
 
 	
 	/**

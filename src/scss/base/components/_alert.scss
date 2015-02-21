@@ -1,0 +1,77 @@
+
+.alerts {
+	position: fixed;
+	z-index: 9999;
+	bottom: 0;
+	left: 0;
+}
+
+.alert {
+	position: relative;
+	margin: 10px;
+	color: #fff;
+  color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+	// padding: 10px 20px 10px 40px;
+	padding: 10px 43px 10px 57px;
+  min-height: 40px;
+
+	&::before {
+		content: "test";
+		font-family: FontAwesome; 
+		font-style: normal; 
+		font-weight: normal; 
+		text-decoration: inherit;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 1.4em;
+	  // margin: 6px 12px;
+	  padding: 7px 15px;
+	}
+
+	.alert__close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		padding: 13px 18px;
+	  background: none;
+	  opacity: .2;
+
+		&::before {
+			content: "\f05c";
+			font-family: FontAwesome; 
+			font-style: normal; 
+			font-weight: normal; 
+			text-decoration: inherit;
+		  font-size: 18px;
+			// margin: 4px;
+			margin: 11px 10px; 
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+
+	&.alert-info {
+		background: $alert-blue;
+		&::before { content: "\f129"; }
+	}
+
+	&.alert-success {
+		background: $alert-green;
+		&::before { content: "\f00c"; }
+	}
+
+	&.alert-warning {
+		background: $alert-orange;
+		&::before { content: "\f06a"; }
+	}
+
+	&.alert-error {
+		background: $alert-red;
+		&::before { content: "\f071"; }
+	}
+
+}
