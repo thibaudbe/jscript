@@ -78,7 +78,7 @@ gulp.task('scripts', function() {
 		.pipe($.jshint());
 		
 	return es.concat(gulp.src([
-		// bower + 'zepto/zepto.min.js',
+		// bower + 'folder/index.js',
 	]), jsFiles)
 		.pipe($.concat('bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
@@ -94,12 +94,12 @@ gulp.task('headScripts', function() {
 		bower + 'modernizr/modernizr.js',
 		bower + 'sass.js/dist/sass.worker.js',
 		bower + 'sass.js/dist/worker.min.js',
-		// bower + 'ace-builds/src/ace.js',
-		// bower + 'ace-builds/src/emmet.js',
-		// bower + 'emmet/index.js',
-		// 'http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js',
-		// 'https://nightwing.github.io/emmet-core/emmet.js',
-		// 'http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ext-emmet.js'
+		bower + 'ace-builds/src/ace.js',
+		bower + 'ace-builds/src/mode-html.js',
+		bower + 'ace-builds/src/mode-javascript.js',
+		bower + 'ace-builds/src/mode-scss.js',
+		bower + 'ace-builds/src/ext-emmet.js',
+		bower + 'emmet/index.js'
 	]))
 		.pipe($.concat('head-bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
