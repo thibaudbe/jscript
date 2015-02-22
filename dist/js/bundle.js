@@ -182,7 +182,7 @@ var app = function() {
 		
 		btnSave.addEventListener('click', function() {
 			actionDispatcher('save', data);
-			alertPopup('warning', 'database connexion incoming.');
+			alertPopup('warning', 'Sorry, database is not connected');
 			return false;
 		});
 
@@ -190,17 +190,41 @@ var app = function() {
 
 	var alertPopup = function(type, message) {
 		var alert = document.createElement('div');
-		alert.setAttribute('class', 'alert alert-'+ type);
+		alert.setAttribute('class', 'animated2 slideDown alert alert-'+ type);
 		alert.innerHTML = message;
 		var button = document.createElement('button');
 		button.setAttribute('class', 'alert__close');
 		alert.appendChild(button);
 		alertBox.appendChild(alert);
 
+		var anim_out;
+		var startTimer = function() {
+			anim_out = setTimeout(function() { 
+				removeAlert();
+			}, 8000);
+		};
+		startTimer();
+
+		var removeAlert = function() {
+			alert.className = 'animated2 fadeOut2 alert alert-'+ type;
+			var timer = setTimeout(function() { 
+				alert.remove();
+			}, 800);
+		};
+
+		var stopTimer = function() {
+    	clearTimeout(anim_out);
+		};
+
 		button.addEventListener('click', function() {
-			alert.remove();
+			stopTimer();
+			removeAlert();
 			return false;
 		});
+
+		if (alertBox.children.length > 5) {
+			alertBox.children[0].remove();
+		}
 	}
 
 	
