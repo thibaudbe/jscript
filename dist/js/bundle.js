@@ -203,13 +203,13 @@ var app = function() {
 				removeAlert();
 			}, 8000);
 		};
-		startTimer();
+		// startTimer();
 
 		var removeAlert = function() {
 			alert.className = 'animated2 fadeOut2 alert alert-'+ type;
 			var timer = setTimeout(function() { 
 				alert.remove();
-			}, 800);
+			}, 400);
 		};
 
 		var stopTimer = function() {
@@ -222,7 +222,7 @@ var app = function() {
 			return false;
 		});
 
-		if (alertBox.children.length > 5) {
+		if (alertBox.children.length > 3) {
 			alertBox.children[0].remove();
 		}
 	}
