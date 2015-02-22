@@ -35,7 +35,7 @@ var app = function() {
 
 	var btnRun = document.querySelector('#btnRun');
 	var btnSave = document.querySelector('#btnSave');
-	var btnResult = document.querySelector('#btnResult');
+	var btnShare = document.querySelector('#btnShare');
 
 
 	/**
@@ -164,6 +164,11 @@ var app = function() {
 		btnSave.addEventListener('click', function() {
 			actionDispatcher('save', data);
 			alertPopup('warning', 'Sorry, database is not connected');
+			return false;
+		});
+
+		btnShare.addEventListener('click', function() {
+			alertPopup('warning', 'Sorry, You can\'t share for now, because database is not connected');
 			return false;
 		});
 
