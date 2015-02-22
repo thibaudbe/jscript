@@ -4,7 +4,6 @@ var del = require('del');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var es = require('event-stream');
-var gutil = require('gulp-util');
 var spawn = require('child_process').spawn;
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*'],
@@ -25,6 +24,7 @@ var banner = ['/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',
   ' * @version v<%= pkg.version %>',
   ' * @link <%= pkg.homepage %>',
+  ' * @author <%= pkg.author %>',
   ' * @license <%= pkg.license %>',
   ' */',
   ''].join('\n');
@@ -52,8 +52,8 @@ gulp.task('clean', function(cb) {
 gulp.task('images', function(cb) {
 	return gulp.src(src + 'images/**/*.{png,jpg,jpeg,gif,svg}')
 		.pipe(gulp.dest(dist + 'images/'))
-		.pipe(isProduction ? gutil.noop() : $.size({ title : 'images' }))
-		.pipe(isProduction ? gutil.noop() : $.duration('images'));
+		.pipe(isProduction ? $.util.noop() : $.size({ title: 'images' }))
+		.pipe(isProduction ? $.util.noop() : $.duration('images'));
 });
 
 // Copy icons
@@ -68,8 +68,8 @@ gulp.task('icons', function() {
 gulp.task('html', function() {
 	return gulp.src('./index.html')
 		.pipe($.size({ title : 'html' }))
-		.pipe(isProduction ? gutil.noop() : $.duration('html'))
-		.pipe(reload({stream:true}))
+		.pipe(isProduction ? $.util.noop() : $.duration('html'))
+		.pipe(reload({stream: true}))
 });
 
 // Hint, uglify and concat scripts
@@ -82,11 +82,11 @@ gulp.task('scripts', function() {
 	]), jsFiles)
 		.pipe($.concat('bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
-		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg: pkg }) : $.util.noop())
 		.pipe(gulp.dest(dist + 'js/'))
-		.pipe($.size({ title : 'scripts' }))
-		.pipe(isProduction ? gutil.noop() : $.duration('scripts'))
-		.pipe(reload({stream:true}))
+		.pipe($.size({ title: 'scripts' }))
+		.pipe(isProduction ? $.util.noop() : $.duration('scripts'))
+		.pipe(reload({stream: true}))
 });
 
 gulp.task('headScripts', function() {
@@ -103,10 +103,10 @@ gulp.task('headScripts', function() {
 	]))
 		.pipe($.concat('head-bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
-		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg: pkg }) : $.util.noop())
 		.pipe(gulp.dest(dist + 'js/'))
 		.pipe($.size({ title : 'scripts' }))
-		.pipe(isProduction ? gutil.noop() : $.duration('scripts'))});
+		.pipe(isProduction ? $.util.noop() : $.duration('scripts'))});
 
 
 // Compile SASS and concat styles
@@ -117,7 +117,7 @@ gulp.task('styles', function() {
 			precision: 2
 		})
 		.on('error', function(err) {
-			new gutil.PluginError('style', err, { showStack: true });
+			new $.util.PluginError('style', err, { showStack: true });
 		});
 
 	return es.concat(gulp.src([
@@ -128,13 +128,13 @@ gulp.task('styles', function() {
 		.pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
 		.pipe(isProduction ? $.combineMediaQueries({
 			log: true
-		}) : gutil.noop())
-		.pipe(isProduction ? $.cssmin() : gutil.noop())
-		.pipe(isProduction ? $.header(banner, { pkg : pkg } ) : $.util.noop())
+		}) : $.util.noop())
+		.pipe(isProduction ? $.cssmin() : $.util.noop())
+		.pipe(isProduction ? $.header(banner, { pkg: pkg }) : $.util.noop())
 		.pipe(gulp.dest(dist + 'css'))
-		.pipe($.size({ title : 'styles' }))
-		.pipe(isProduction ? gutil.noop() : $.duration('styles'))
-		.pipe(reload({stream:true}))
+		.pipe($.size({ title: 'styles' }))
+		.pipe(isProduction ? $.util.noop() : $.duration('styles'))
+		.pipe(reload({stream: true}))
 });
 
 
