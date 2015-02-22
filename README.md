@@ -7,11 +7,11 @@ You can test your CSS, HTML and JavaScript code in the result window.
 
 ## Updates 
 
-- [Spacegray UI theme](http://kkga.github.io/spacegray/) 
-- SASS support
 - Ace UI editor
+- [Spacegray UI theme](http://kkga.github.io/spacegray/) 
 - Emmet.io support (oh yeah!)
-- Responsive
+- SASS support
+- Responsive Editor
 - Shortcuts
 	- ```ctrl + enter``` to run on window
 	- ```cmd + enter``` to run on osx
