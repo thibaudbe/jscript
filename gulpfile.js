@@ -59,7 +59,8 @@ gulp.task('images', function(cb) {
 // Copy icons
 gulp.task('icons', function() {
 	return gulp.src(bower + 'fontawesome/fonts/**.*')
-		.pipe(gulp.dest(dist + 'fonts/'));
+		.pipe(gulp.dest(dist + 'fonts/'))
+		.pipe($.size({ title: 'icons' }))
 });
 
 
@@ -78,7 +79,7 @@ gulp.task('scripts', function() {
 		.pipe($.jshint());
 		
 	return es.concat(gulp.src([
-		// bower + 'folder/index.js',
+		//
 	]), jsFiles)
 		.pipe($.concat('bundle.js'))
 		.pipe(isProduction ? $.uglifyjs() : $.util.noop())
@@ -89,11 +90,22 @@ gulp.task('scripts', function() {
 		.pipe(reload({stream: true}))
 });
 
+
+// Copy heavy SASS script compiler
+gulp.task('sassScripts', function() {
+	return es.concat(gulp.src([
+		bower + 'sass.js/dist/sass.worker.js',
+		bower + 'sass.js/dist/worker.min.js'
+	]))
+		.pipe($.concat('sass.js'))
+		.pipe(gulp.dest(dist + 'js/'))
+		.pipe($.size({ title: 'sass.js' }))
+});
+
+
 gulp.task('headScripts', function() {
 	return es.concat(gulp.src([
 		bower + 'modernizr/modernizr.js',
-		bower + 'sass.js/dist/sass.worker.js',
-		bower + 'sass.js/dist/worker.min.js',
 		bower + 'ace-builds/src/ace.js',
 		bower + 'ace-builds/src/mode-html.js',
 		bower + 'ace-builds/src/mode-javascript.js',
@@ -106,7 +118,8 @@ gulp.task('headScripts', function() {
 		.pipe(isProduction ? $.header(banner, { pkg: pkg }) : $.util.noop())
 		.pipe(gulp.dest(dist + 'js/'))
 		.pipe($.size({ title : 'scripts' }))
-		.pipe(isProduction ? $.util.noop() : $.duration('scripts'))});
+		.pipe(isProduction ? $.util.noop() : $.duration('scripts'))
+});
 
 
 // Compile SASS and concat styles
@@ -172,6 +185,7 @@ gulp.task('build', ['clean'], function() {
 		'images',
 		'html',
 		'styles',
+		'sassScripts',
 		'headScripts',
 		'scripts'
 	]);

@@ -180,6 +180,15 @@ var app = function() {
 			return false;
 		});
 
+		// A prompt message if you're leaving the app w/ save
+		window.onbeforeunload = function() {
+			if (data.html !== inputHtml.value || data.script !== inputScript.value || data.style !== inputStyle.value) {
+				return 'You are going to lost your unsave data.';
+			} else {
+				return;
+			}
+		};
+
 	};
 
 	var alertPopup = function(type, message) {
