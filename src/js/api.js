@@ -4,8 +4,8 @@
  * Data's API
  */
 var data = {
-	title: null,
-	description: null,
+	title: 'Demo',
+	description: 'This is a sample demo.',
 	library: false,
 	sass: true,
 	preview: false,

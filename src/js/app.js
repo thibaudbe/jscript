@@ -21,6 +21,8 @@ var app = function() {
 	var inputScript = document.querySelector('#inputScript');
 	var inputHtml = document.querySelector('#inputHtml');
 
+	var inputTitle = document.querySelector('#inputTitle');
+	var inputDescription = document.querySelector('#inputDescription');
 	var inputLibrary = document.querySelector('#inputLibrary');
 	var inputSass = document.querySelector('#inputSass');
 	var inputPreview = document.querySelector('#inputPreview');
@@ -48,9 +50,12 @@ var app = function() {
 		inputHtml.value = data.html;
 		inputScript.value = data.script;
 		inputStyle.value = data.style;
+		inputTitle.value = data.title;
+		inputDescription.value = data.description;
 		inputLibrary.checked = data.library ? true : false;
 		inputSass.checked = data.sass ? true : false;
 		inputPreview.checked = data.preview ? true : false;
+		document.title = 'JScript | '+ inputTitle.value;
 
 		// init editors
 		initEditor(data.html, editorHtml, 'html');
@@ -122,6 +127,9 @@ var app = function() {
 	}
 
 	var refreshData = function(data) {
+		document.title = 'JScript | '+ inputTitle.value;
+		data.title = inputTitle.value;
+	  data.description = inputDescription.value;
 		data.library = inputLibrary.checked ? true : false;
 		data.sass = inputSass.checked ? true : false;
 		data.preview = inputPreview.checked ? true : false;
