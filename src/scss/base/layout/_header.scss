@@ -37,13 +37,19 @@
 		  font-weight: bold;
 		  top: -2px;
 		  text-align: center;
-		  // display: none;
+		  
+		  @media screen and (max-width: $tablet) {
+		  	display: none;
+		  }
 		}
 
 		.fa {
-			margin-right: .5em;
 			font-size: 1.2em;
-			color: $header-links-icons
+			color: $header-links-icons;
+
+			@media screen and (min-width: $tablet) {
+				margin-right: .5em;
+			}
 		}
 
 		&:hover {
