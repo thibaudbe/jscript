@@ -23,9 +23,10 @@ var app = function() {
 
 	var inputTitle = document.querySelector('#inputTitle');
 	var inputDescription = document.querySelector('#inputDescription');
-	var inputLibrary = document.querySelector('#inputLibrary');
+	var inputReset = document.querySelector('#inputReset');
 	var inputSass = document.querySelector('#inputSass');
 	var inputPreview = document.querySelector('#inputPreview');
+	var libraries = document.querySelector('#libraries');
 
 	var tab1 = document.querySelector('#tab1');
 	var tab2 = document.querySelector('#tab2');
@@ -52,10 +53,23 @@ var app = function() {
 		inputStyle.value = data.style;
 		inputTitle.value = data.title;
 		inputDescription.value = data.description;
-		inputLibrary.checked = data.library ? true : false;
+		inputReset.checked = data.reset ? true : false;
 		inputSass.checked = data.sass ? true : false;
 		inputPreview.checked = data.preview ? true : false;
 		document.title = 'JScript | '+ inputTitle.value;
+
+		if (data.libraries.length > 0) {
+			data.libraries.forEach(function(el, i, arr) {
+				var name = el.split('/').pop();
+				var li = document.createElement('li');
+				var link = document.createElement('a');
+				link.setAttribute('href', el);
+				link.setAttribute('target', '_blank');
+				link.innerHTML = name;
+				li.appendChild(link);
+				libraries.appendChild(li);
+			});
+		}
 
 		// init editors
 		initEditor(data.html, editorHtml, 'html');
@@ -130,12 +144,23 @@ var app = function() {
 		document.title = 'JScript | '+ inputTitle.value;
 		data.title = inputTitle.value;
 	  data.description = inputDescription.value;
-		data.library = inputLibrary.checked ? true : false;
+		data.reset = inputReset.checked ? true : false;
 		data.sass = inputSass.checked ? true : false;
 		data.preview = inputPreview.checked ? true : false;
 		data.html = inputHtml.value;
 		data.script = inputScript.value;
 		data.style = inputStyle.value;
+
+		// if (data.libraries.length > 0) {
+		// 	data.libraries.forEach(function(el, i, arr) {
+		// 		var li = document.createElement('li');
+		// 		var link = document.createElement('a');
+		// 		link.setAttribute('href', el);
+		// 		link.setAttribute('target', '_blank');
+		// 		li.appendChild(link);
+		// 		libraries.appendChild(li);
+		// 	});
+		// }
 
 		buildFrame(data);
 	};
@@ -254,12 +279,33 @@ var app = function() {
 		script.text = data.script;
 		
 		// Import normalize if necessary
-		if (data.library === true) {
+		if (data.reset === true) {
 			var libUrl = 'http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css';
 			var link = newFrame.contentWindow.document.createElement('link');
 			link.setAttribute('rel', 'stylesheet');
 			link.setAttribute('href', libUrl);
 			newFrame.contentWindow.document.head.appendChild(link);
+		}
+
+		// Load external libraries
+		if (data.libraries.length > 0) {
+			data.libraries.forEach(function(el, i, arr) {
+				var extension = el.split('.').pop();
+				if (extension == 'js') {
+					var scriptLib = newFrame.contentWindow.document.createElement('script');
+					scriptLib.setAttribute('type', 'text/javascript');
+					scriptLib.setAttribute('src', el);
+					newFrame.contentWindow.document.body.appendChild(scriptLib);
+				} else if (extension == 'css') {
+					var linkLib = newFrame.contentWindow.document.createElement('link');
+					linkLib.setAttribute('rel', 'stylesheet');
+					linkLib.setAttribute('href', el);
+					newFrame.contentWindow.document.head.appendChild(link);
+				} else {
+					// console.log('Error file extension...');
+					alertPopup('error', 'Something\'s wrong with your file.');
+				}
+			});
 		}
 		
 		// Compile to SASS or simply load CSS. default is true

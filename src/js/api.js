@@ -6,8 +6,11 @@
 var data = {
 	title: 'Demo',
 	description: 'This is a sample demo.',
-	library: false,
+	reset: false,
 	sass: true,
+	libraries: [
+		'http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'
+	],
 	preview: false,
 	ressources: [],
 	view: {
