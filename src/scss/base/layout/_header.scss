@@ -78,14 +78,20 @@
 			position: relative;
 			display: block;
 
-			button {
+			input {
+			  padding-right: 2.8em;
+			}
+
+			a {
 				position: absolute;
-				top: 0;
-				right: 0;
+				top: 1px;
+				right: 1px;
 				font-size: 0.9em;
 				background: none;
 				color: $blue;
 				background: #fff;
+				padding: .48em;
+				text-align: center;
 			}
 
 			// &.not-empty:hover {
@@ -95,12 +101,22 @@
 		}
 
 		.libraries {
+			display: table;
+		  width: 100%;
 
 			li {
 				
 				a {
 					color: #fff;
 					text-decoration: underline;
+					float: left;
+				  padding: .2em 1em .4em 0;
+
+					&.delete {
+						text-decoration: none;
+						float: right;
+						padding: .3em .45em
+					}
 				}
 			}
 		}

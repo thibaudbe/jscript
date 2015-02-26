@@ -75,7 +75,7 @@ gulp.task('html', function() {
 
 // Hint, uglify and concat scripts
 gulp.task('scripts', function() {
-	var jsFiles = gulp.src(src + 'js/**/*.js')
+	var jsFiles = gulp.src(src + 'js/*.js')
 		.pipe($.jshint());
 		
 	return es.concat(gulp.src([

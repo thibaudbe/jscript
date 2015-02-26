@@ -67,6 +67,12 @@ var app = function() {
 				link.setAttribute('target', '_blank');
 				link.innerHTML = name;
 				li.appendChild(link);
+
+				var del = document.createElement('a');
+				del.setAttribute('class', 'delete');
+				del.setAttribute('href', '#');
+				del.innerHTML = '<i class="fa fa-minus"></i>';
+				li.appendChild(del);
 				libraries.appendChild(li);
 			});
 		}
