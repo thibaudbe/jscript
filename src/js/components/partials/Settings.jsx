@@ -3,8 +3,9 @@
 var React    = require('react');
 var Addons   = require('react/addons');
 
-var AppStore = require('../../stores/AppStore');
-var AppActions = require('../../actions/AppActions');
+var Libraries = require('./settings/Libraries.jsx');
+// var AppStore = require('../../stores/AppStore');
+// var AppActions = require('../../actions/AppActions');
 
 
 var Settings = React.createClass({
@@ -17,14 +18,14 @@ var Settings = React.createClass({
 	},
 
 	onChange: function(name, e) {
-		var state = {};
+		var state = new Object();
 		var this_index = null;
 		var type = e.target.type;
 		var this_value = e.target.value;
 		var p_name = 'settings';
 
 		// Init sub object
-		var parent = {};
+		var parent = new Object();
 		parent[p_name] = this.state[p_name];
 		
 		// if type is a checkbox
@@ -96,38 +97,6 @@ var Settings = React.createClass({
 		)
 	},
 
-	handleSave: function() {
-		return AppActions.updateData(this.state);
-	},
-
-	handleAddRemove: function(type, e) {
-		var state = {};
-		// var this_value = this;
-		// var this_index = null;
-		// var extension = null;
-		var this_value = e.target.value;
-		var parent = 'settings';
-
-		console.log('this_value', this_value);
-
-		// Init sub object
-		var parent_name = {};
-		parent_name[parenx] = this.state[parenx];
-
-		switch(type) {
-			case 'add':
-				console.log('Add library');
-				break;
-			case 'remove':
-				console.log('Remove library');
-				break;
-		}
-
-		// Render sub object
-		parent_name[parenx][name] = state[name];
-		return this.setState(parent_name);
-	},
-
 	render: function() {
 		return (
 			<li className="dropdown">
@@ -153,26 +122,8 @@ var Settings = React.createClass({
 					</li>
 
 					<li className="sep"></li>
-					<li>
-						<span className="input-group">
-							<input type="text" name="libraries" placeholder="Import Libraries" />
-							<a href="javascript:void(0)" onClick={this.handleAddRemove.bind(this, 'add')} className="add">
-								<i className="fa fa-plus"></i>
-							</a>
-						</span>
-						<ul id="libraries" className="libraries">
-							{ this.state.settings.libraries.map(function(elem, i) {
-									return (
-										<li key={i}>
-											<a href={elem} className="link" target="_blank">{elem}</a> 
-											<a href="javascript:void(0)" onClick={this.handleAddRemove.bind(this, 'remove')} className="remove">
-												<i className="fa fa-minus"></i>
-											</a>
-										</li>
-									)
-							}, this) }
-						</ul>
-					</li>
+					
+					<Libraries {...this.state} />	
 
 					<li className="sep"></li>
 					<li>

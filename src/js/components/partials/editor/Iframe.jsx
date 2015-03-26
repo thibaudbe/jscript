@@ -24,28 +24,27 @@ var Iframe = React.createClass({
 			
 			// Import normalize if necessary
 			if (this.props.settings.reset) {
-				var libUrl = 'http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css';
-				var link = iframe.createElement('link');
-				link.setAttribute('rel', 'stylesheet');
-				link.setAttribute('href', libUrl);
-				iframe.head.appendChild(link);
+				var linkReset = iframe.createElement('link');
+				linkReset.setAttribute('rel', 'stylesheet');
+				linkReset.setAttribute('href', 'http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css');
+				iframe.head.appendChild(linkReset);
 			}
 
 			// Load external libraries
 			if (this.props.settings.libraries.length > 0) {
-				this.props.settings.libraries.forEach(function(el, i, arr) {
-					var extension = el.split('.').pop();
+				this.props.settings.libraries.forEach(function(elem, i, arr) {
+					var extension = elem.split('.').pop();
 					
 					if (extension == 'js') {
 						var scriptLib = iframe.createElement('script');
 						scriptLib.setAttribute('type', 'text/javascript');
-						scriptLib.setAttribute('src', el);
-						iframe.body.appendChild(scriptLib);
+						scriptLib.setAttribute('src', elem);
+						iframe.head.appendChild(scriptLib);
 					} else if (extension == 'css') {
 						var linkLib = iframe.createElement('link');
 						linkLib.setAttribute('rel', 'stylesheet');
-						linkLib.setAttribute('href', el);
-						iframe.head.appendChild(link);
+						linkLib.setAttribute('href', elem);
+						iframe.head.appendChild(linkLib);
 					} else {
 						console.log('Error file extension...');
 						// alertPopup('error', 'Something\'s wrong with your file.');

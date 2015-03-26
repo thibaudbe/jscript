@@ -10,6 +10,11 @@ html, body {
 	font-size: .9em;
 }
 
+button, input, textarea {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	border: none !important;
+}
 
 
 
@@ -27,3 +32,4 @@ ul.inline {
 	display: none;
 	visibility: hidden;
 }
+

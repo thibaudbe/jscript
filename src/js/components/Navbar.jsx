@@ -55,12 +55,14 @@ var Navbar = React.createClass({
 							<span className="name">Save</span>
 						</a>
 					</li>
+					{/*
 					<li>
 						<a href="javascript:void(0)" id="btnShare" onClick={this.shareData}>
 							<i className="fa fa-share-alt"></i>
 							<span className="name">Share</span>
 						</a>
 					</li>
+					*/}
 				</ul>
 
 				<ul className="inline settings">

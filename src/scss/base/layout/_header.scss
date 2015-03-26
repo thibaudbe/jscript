@@ -20,9 +20,10 @@
 		h1 {
 			margin: 0;
 			color: $orange;
-		}
-		span { 
-			color: #fff;
+			
+			b { 
+				color: #fff;
+			}
 		}
 	}
 
@@ -74,30 +75,36 @@
 	.settings {
 		float: right;
 
+		textarea {
+		  margin-bottom: auto;
+		}
+
 		.input-group {
 			position: relative;
 			display: block;
+			background-color: #fff;
+			margin-bottom: 10px;
 
 			input {
-			  padding-right: 2.8em;
+			  // padding-right: 2.8em;
+			  @include ellipsis(185px);
+			  margin-bottom: auto;
 			}
 
-			a {
+			button {
 				position: absolute;
-				top: 1px;
-				right: 1px;
-				font-size: 0.9em;
-				background: none;
-				color: $blue;
+				top: 0;
+				right: 0;
+				font-size: 1.2em;
 				background: #fff;
-				padding: .48em;
+				color: lighten($blue, 60%);
+				padding: .38em 0.9em;
 				text-align: center;
-			}
 
-			// &.not-empty:hover {
-			// 	.add { display: none; }
-			// 	.remove { display: block !important; }
-			// }
+				&:focus {
+					outline: 0;
+				}
+			}
 		}
 
 		.libraries {
@@ -107,12 +114,16 @@
 			li {
 				
 				a {
-					color: #fff;
-					text-decoration: underline;
-					float: left;
-				  padding: .2em 1em .4em 0;
+					color: lighten($blue, 60%);
 
-					&.delete {
+					&.link {
+						text-decoration: underline;
+						float: left;
+					  padding: .2em 1em .4em 0;
+					  @include ellipsis(185px);
+					}
+
+					&.remove {
 						text-decoration: none;
 						float: right;
 						padding: .3em .45em
@@ -123,7 +134,7 @@
 
 		label {
 			margin:0;
-			padding: .4em .4em;
+			padding: .4em .4em .4em 0;
 			cursor: pointer;
 
 			input {

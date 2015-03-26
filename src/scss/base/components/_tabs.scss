@@ -62,6 +62,7 @@
     &.tab-result {
       @media screen and (max-width: $tablet) {
         width: 100%;
+        // display: hidden !important;
       }
       @media screen and (min-width: $tablet) {
         display: block !important;
