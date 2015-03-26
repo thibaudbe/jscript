@@ -29,6 +29,8 @@
     "bitters": "~1.0.0",
     "sass.js": "~0.6.2",
     "emmet": "https://nightwing.github.io/emmet-core/emmet.js",
-    "ace-builds": "~1.1.8"
+    "ace-builds": "~1.1.8",
+    "react": "~0.13.0",
+    "mousetrap": "~1.4.6"
   }
 }
