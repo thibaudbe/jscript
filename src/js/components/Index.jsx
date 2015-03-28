@@ -8,8 +8,7 @@ var AppStore        = require('../stores/AppStore');
 var AppActions      = require('../actions/AppActions');
 var Navbar          = require('../components/Navbar.jsx');
 var Editor          = require('../components/Editor.jsx');
-var Notification    = require('../components/partials/Notification.jsx');
-// var StoreWatchMixin = require('../mixins/StoreWatchMixin');
+// var Alerts          = require('../partials/components/Alerts.jsx');
 
 
 var Index = React.createClass({
@@ -29,7 +28,6 @@ var Index = React.createClass({
 				<div id="form">
 					<Navbar {...this.state} />
 					<Editor {...this.state} />
-					<Notification />
 				</div>
 			</DocumentTitle>
 		);

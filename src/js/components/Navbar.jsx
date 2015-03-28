@@ -13,12 +13,39 @@ var AppStore   = require('../stores/AppStore');
 
 var Navbar = React.createClass({
 
+	getInitialState: function() {
+		return { 
+			alerts: []
+		};
+  },
+	
+	newAlert: function(type, e) {
+		var name = 'alerts';
+		var state = {};
+		state[name] = this.state.alerts;
+		if (this.state.alerts.length > 4)
+			state[name].shift();
+		state[name].push({level: 'warning', message: 'Sorry, database is not connected'});
+		return this.setState(state);
+	},
+	
+	removeAlert: function(type) {
+		var name = 'alerts';
+		var state = {};
+		state[name] = [];
+		this.state.alerts.forEach(function(elem, i) {
+			if (type != i)
+				state[name].push(elem);
+		});
+		return this.setState(state);
+	},
+
 	updateData: function() {
 		return AppStore.fetchData(this.props);
 	},
 
 	saveData: function() {
-		return AppActions.saveData(this.props);
+		// return AppActions.saveData(this.props);
 	},
 
 	shareData: function() {
@@ -50,12 +77,19 @@ var Navbar = React.createClass({
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)" id="btnSave" onClick={this.saveData}>
+						<a href="javascript:void(0)"
+							onClick={this.newAlert}>
 							<i className="fa fa-save"></i>
 							<span className="name">Save</span>
 						</a>
 					</li>
 					{/*
+					<li>
+						<a href="javascript:void(0)" id="btnSave" onClick={this.saveData}>
+							<i className="fa fa-save"></i>
+							<span className="name">Save</span>
+						</a>
+					</li>
 					<li>
 						<a href="javascript:void(0)" id="btnShare" onClick={this.shareData}>
 							<i className="fa fa-share-alt"></i>
@@ -69,6 +103,18 @@ var Navbar = React.createClass({
 					<Settings {...this.props} />
 					{/* Futur <Login /> */}
 				</ul>
+
+				<div id="alertBox" className="alerts">
+					{this.state.alerts.map(function(elem, i) {
+						return <div 
+							key={i}
+							onClick={this.removeAlert.bind(this, i)}
+							className={'alert alert-' + elem.level}>
+							{elem.message}
+							<div className="alert__close"></div>
+						</div>
+					}, this)}
+				</div>
 			</div>
 		);
 	}
