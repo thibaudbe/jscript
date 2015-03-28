@@ -1,9 +1,12 @@
 'use strict';
 
 var React = require('react');
+var DomConstructorMixin = require('../../../mixins/DomConstructorMixin');
 
 
 var Iframe = React.createClass({
+
+	mixins: [DomConstructorMixin],
 	
 	buildFrame: function() {
 		var iframe = this.refs.resultIframe.getDOMNode().contentWindow.document;
@@ -14,53 +17,38 @@ var Iframe = React.createClass({
 
 		if (iframe.readyState === 'complete') {
 			
-			// Html Input
-			var html = this.props.editor.html;
-			
-			// Script Input
-			var script = iframe.createElement('script');
-			script.setAttribute('type', 'text/javascript');
-			script.text = this.props.editor.script;
-			
 			// Import normalize if necessary
 			if (this.props.settings.reset) {
-				var linkReset = iframe.createElement('link');
-				linkReset.setAttribute('rel', 'stylesheet');
-				linkReset.setAttribute('href', 'http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css');
-				iframe.head.appendChild(linkReset);
+				var link = 'http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css';
+				this.loadStylesheet(link, iframe);
 			}
 
 			// Load external libraries
-			if (this.props.settings.libraries.length > 0) {
-				this.props.settings.libraries.forEach(function(elem, i, arr) {
-					var extension = elem.split('.').pop();
+			var libraries = this.props.settings.libraries;
+			if (libraries.length > 0) {
+				for (var i = 0; i < libraries.length; i++) {
+					var extension = libraries[i].split('.').pop();
 					
 					if (extension == 'js') {
-						var scriptLib = iframe.createElement('script');
-						scriptLib.setAttribute('type', 'text/javascript');
-						scriptLib.setAttribute('src', elem);
-						iframe.head.appendChild(scriptLib);
+						this.loadScript(libraries[i], iframe);
 					} else if (extension == 'css') {
-						var linkLib = iframe.createElement('link');
-						linkLib.setAttribute('rel', 'stylesheet');
-						linkLib.setAttribute('href', elem);
-						iframe.head.appendChild(linkLib);
+						this.loadStylesheet(libraries[i], iframe);
 					} else {
 						console.log('Error file extension...');
 						// alertPopup('error', 'Something\'s wrong with your file.');
 					}
-				});
+				};
 			}
 			
 			// Compile to SASS or simply load CSS. default is true
-			var style = iframe.createElement('style');
-			style.setAttribute('type', 'text/css');
-			style.innerHTML = this.props.settings.sass ? Sass.compile(this.props.editor.style) : this.props.editor.style;
+			var style = this.props.settings.sass ? Sass.compile(this.props.editor.style) : this.props.editor.style;
+			
+			// Html Input
+			this.inlineHtml(this.props.editor.html, iframe);
 			
 			// Append HTML, style and script
-			iframe.body.insertAdjacentHTML('beforeend', html);
-			iframe.head.appendChild(style);
-			iframe.body.appendChild(script);
+			this.inlineStylesheet(style, iframe);
+			this.inlineScript(this.props.editor.script, iframe);
 
 		} else {
 			setTimeout(this.buildFrame, 0);
