@@ -44,6 +44,11 @@ var Editor = React.createClass({
 	render: function() {
 		return (
 			<div className="main">
+				<div className="infos">
+					<a href="http://thibaudb.com/jscript/" target="_blank" title="Thibaud B. post and repository">
+						<i className="fa fa-info-circle"></i>
+					</a>
+				</div>
 				<ul className="tabs">
 					<li>
 						<input type="radio" name="tabs" id="tab1" defaultChecked />

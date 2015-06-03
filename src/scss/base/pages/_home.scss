@@ -7,6 +7,23 @@
 	background: $background;
 }
 
+.infos {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 10px 15px;
+
+  a {
+	  color: #757A84;
+  	font-size: 1.5em;
+
+  	&:hover {
+  		color: lighten(#757A84, 20%);
+  	}
+  }
+}
+
 .tab-result {
 	background: #232830;
 	padding: 5px;
